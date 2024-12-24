@@ -1,6 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.8.11'
-	id 'maven-publish'
+	id 'fabric-loom' version '1.9.2'
 	id 'io.freefair.lombok' version '8.10'
 }
 
@@ -24,14 +23,6 @@ repositories {
 	mavenLocal() // only used to build the mod locally
 	maven { url 'https://masa.dy.fi/maven' }
 	maven { url 'https://jitpack.io' }
-
-	maven {
-		url = uri("https://maven.pkg.github.com/Arematics/AdvancedChatCore")
-		credentials {
-			username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-			password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-		}
-	}
 }
 
 dependencies {
@@ -40,7 +31,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 	modImplementation "com.github.sakura-ryoko:malilib:${project.malilib_version}"
-	modImplementation "com.arematics:advancedchatcore:${project.advancedchat_version}"
+	modImplementation files("../AdvancedChatCore/build/libs/AdvancedChatCore-${project.advancedchat_version}.jar")
 
 	implementation "com.github.DarkKronicle.Konstruct:addons:${project.konstruct_version}"
 	implementation "com.github.DarkKronicle.Konstruct:core:${project.konstruct_version}"
